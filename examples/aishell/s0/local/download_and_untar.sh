@@ -79,11 +79,11 @@ if [ ! -f $data/$part.tgz ]; then
 fi
 
 cd $data
-
 if ! tar -xvzf $part.tgz; then
   echo "$0: error un-tarring archive $data/$part.tgz"
   exit 1;
 fi
+cd ..
 
 touch $data/$part/.complete
 
@@ -93,6 +93,7 @@ if [ $part == "data_aishell" ]; then
     echo "Extracting wav from $wav"
     tar -zxf $wav && rm $wav
   done
+  cd ../../..
 fi
 
 echo "$0: Successfully downloaded and un-tarred $data/$part.tgz"
